@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+  </head>
+  <body>
+    <!-- <script type="module" src="/ES6/app.js"></script> -->
+    <script>
+      // DOM
+      const h1DOM = document.createElement("h1");
+      h1DOM.title = "Hello";
+      h1DOM.className = "heading";
+
+      h1DOM.innerText = "Hello guys !!";
+
+      document.body.appendChild(h1DOM);
+
+      // React - DOM
+
+      const h1Rect = React.createElement(
+        "h1",
+        {
+          title: "Hello",
+          className: "heading",
+        },
+        "Hello con mẹ mày !!"
+      );
+
+      console.log(h1DOM);
+      console.log(h1Rect);
+    </script>
+
+    <script>
+      const ulDom = document.createElement("ul");
+      ulDom.id = "ul-id";
+      ulDom.style = "color: red; font-size: 30px";
+
+      const liDom1 = document.createElement("li");
+      liDom1.innerText = "JavaScript";
+      liDom1.id = "li-1";
+      liDom1.style = "color: blue; font-size: 15px";
+
+      const liDom2 = document.createElement("li");
+      liDom2.innerText = "ReactJs";
+      liDom2.id = "li-2";
+      liDom2.style = "color: black; font-size: 20px";
+
+      const liDom3 = document.createElement("li");
+      liDom3.innerText = "React Native";
+      liDom3.id = "li-3";
+
+      ulDom.appendChild(liDom1);
+      ulDom.appendChild(liDom2);
+      ulDom.appendChild(liDom3);
+
+      document.body.appendChild(ulDom);
+
+      console.log(ulDom);
+
+      const ulReact = React.createElement(
+        "ul",
+        {
+          id: "ul",
+          style: "background: red",
+        },
+        React.createElement(
+          "li",
+          { id: "li-1", style: "color: blue; font-size: 15px" },
+          "JavaScript"
+        ),
+        React.createElement(
+          "li",
+          { id: "li-2", style: "color: red; font-size: 20px" },
+          "ReactJS"
+        )
+      );
+      console.log(ulReact);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      // funtion component
+      function Header() {
+        return (
+          <div className="header">
+            <h1>Cristiano ronaldo-Cr7</h1>
+          </div>
+        );
+      }
+
+      // postItemt
+
+      function PostItemt() {
+        return (
+          <div className="post-item">
+            <Header />
+            <img
+              src="https://images2.thanhnien.vn/thumb_w/640/528068263637045248/2023/3/18/ronaldo-16791242724992139535713.jpeg"
+              alt="C#(.NET) - Tương tác với file Excel"
+            />
+            <h2 className="post-title">C#(.NET) - Tương tác với file Excel</h2>
+            <p className="post-desc">Bạn có kiến thức ngôn ngữ C#...</p>
+            <p className="post-published">Một ngày trước 5 phút</p>
+          </div>
+        );
+      }
+
+      // class component
+      //   class Content extends React.Component {
+      //     render() {
+      //       return <div className="content">Content</div>;
+      //     }
+      //   }
+      // Render Array
+
+      function App() {
+        return (
+          <div className="app">
+            <PostItemt />
+            <PostItemt />
+            <PostItemt />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+  </body>
+</html>

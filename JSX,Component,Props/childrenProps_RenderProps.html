@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Input({ label, ...inputProps }) {
+        return (
+          <div>
+            <label>{label}</label>
+            <input {...inputProps} />
+          </div>
+        );
+      }
+
+      function Button({ children, onClick }) {
+        return <button>{children}</button>;
+      }
+
+      function ListCar({ data, children, index }) {
+        // trường hợp ít params
+        // return <ul>{data.map((data, index) => children(data, index))}</ul>;
+        // trường hợp nhiều params
+        return(
+            <ul>
+                {data.map((...props) => children(...props))}    
+            </ul>
+        )
+      }
+      function App() {
+        const cars = ["BMW", "Mazda", "Honda", "Mecedes"];
+        return (
+          <div id="wrapper">
+            <Input label="Full name.." placeholder="Enter name" />
+            <Button onClick={() => Math.random()}>Click Me</Button>
+            <ListCar data={cars}>
+              {(item, index) => <li key={index}>{item}</li>}
+            </ListCar>
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>

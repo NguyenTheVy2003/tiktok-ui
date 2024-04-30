@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      // funtion component
+      function Header(props) {
+        return (
+          <div className="header">
+            <h1>{props.title}</h1>
+          </div>
+        );
+      }
+
+      // postItemt
+
+      function PostItemt(props) {
+        console.log(props);
+        return (
+          <div className="post-item">
+            <img src={props.image} alt={props.alt} />
+            <h2 className="post-title">{props.title}</h2>
+            <p className="post-desc">{props.desciption}</p>
+            <p className="post-published">{props.publicShed}</p>
+          </div>
+        );
+      }
+
+      // class component
+      //   class Content extends React.Component {
+      //     render() {
+      //       return <div className="content">Content</div>;
+      //     }
+      //   }
+      // Render Array
+
+      function App() {
+        return (
+          <div className="wapper">
+            <label htmlFor="email">Email</label>
+            <input id="email" />
+            <Header title="Cristiano" />
+            <PostItemt
+              title="1C#(.NET) - Tương tác với file Excel"
+              image="https://images2.thanhnien.vn/thumb_w/640/528068263637045248/2023/3/18/ronaldo-16791242724992139535713.jpeg"
+              alt="C#(.NET) - Tương tác với file Excel"
+              desciption="Bạn có kiến thức ngôn ngữ C#..."
+              publicShed="Một ngày trước 5 phút"
+            />
+            <Header title="Ronaldo" />
+            <PostItemt
+              title="2C#(.NET) - Tương tác với file Excel"
+              image="https://icdn.24h.com.vn/upload/2-2024/images/2024-04-28/7-495-1714255422-702-width740height495.jpg"
+              alt="C#(.NET) - Tương tác với file Excel"
+              desciption="Bạn có kiến thức ngôn ngữ C#..."
+              publicShed="Một ngày trước 5 phút"
+            />
+            <Header title="Cristiano Ronaldo" />
+            <PostItemt
+              title="3C#(.NET) - Tương tác với file Excel"
+              image="https://media.bongda.com.vn/resize/630x374/files/thach.pham/2024/04/28/j-0543.jpg"
+              alt="C#(.NET) - Tương tác với file Excel"
+              desciption="Bạn có kiến thức ngôn ngữ C#..."
+              publicShed="Một ngày trước 5 phút"
+            />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Button({ title, onClick, href }) {
+        let Component = "button";
+        const props = {};
+        if (href) {
+          // Bắt buộc phải viết hoa kí tự đầu tiên của Compponent
+          Component = "a";
+          props.href = href;
+        }
+        if (onClick) {
+          props.onClick = onClick;
+        }
+        return <Component {...props}>{title}</Component>;
+      }
+      function App() {
+        return (
+          <div id="wrapper">
+            <Button
+              title="Click me"
+              onClick={() => console.log(Math.random())}
+              href="https://fullstack.edu.vn/learning/reactjs?id=f106ce66-7cfa-4963-94ad-81e96945a576"
+            />
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
