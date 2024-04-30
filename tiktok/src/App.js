@@ -1,25 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+/*  
+  Tạo 1 nút đếm số bắt đầu từ 1 
+*/
+import Hooks from "./Component/Hooks/UseState/UseState_state";
+import Toway from "./Component/Hooks/UseState/UseState_Toway";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Toway/>
+  )
 }
 
 export default App;
