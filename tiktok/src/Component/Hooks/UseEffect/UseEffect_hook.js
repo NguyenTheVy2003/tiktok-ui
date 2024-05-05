@@ -4,7 +4,7 @@
 
 import { useState, useEffect } from "react";
 
-const tabs = ['posts', 'comments', 'albums', 'photos', 'todos', 'users']
+const tabs = ['posts', 'comments', 'albums', 'photos']
 
 function UseEffect_hook() {
     // Mounted & Unmounted?
@@ -14,9 +14,11 @@ function UseEffect_hook() {
     const [posts, setPosts] = useState([])
     const [type, setType] = useState('posts')
 
+    const [showgoToTop, setShowGoToTop] = useState(false)
+    const [Width, setWidth] = useState(window.innerWidth)
 
 
-
+    // call Api
     useEffect(() => {
 
         console.log('Title Changed');
@@ -26,6 +28,46 @@ function UseEffect_hook() {
                 setPosts(posts)
             })
     }, [type])
+
+
+    // show gotoTop button
+    useEffect(() => {
+
+        const handelScroll = () => {
+            if (window.scrollY >= 200) {
+                // show
+                setShowGoToTop(true)
+            } else {
+                // hide
+                setShowGoToTop(false)
+            }
+        }
+        window.addEventListener('scroll', handelScroll)
+        console.log('addEventListener');
+
+        // cleanUp
+        return () => {
+            window.removeEventListener('scroll', handelScroll)
+            console.log('removeEventListener');
+        }
+    }, [])
+
+    // show width window
+    useEffect(() => {
+
+        const handleResize = () => {
+            setWidth(window.innerWidth)
+        }
+        window.addEventListener('resize', handleResize)
+        console.log('handleResize');
+
+        // cleanUp
+
+        return () => {
+            window.removeEventListener('resize', handleResize)
+            console.log('removeEventListener');
+        }
+    }, [])
 
 
     return (
@@ -47,11 +89,21 @@ function UseEffect_hook() {
             ))}
             <input value={title}
                 onChange={e => setTitle(e.target.value)} />
+            <h2>Cửa sổ trình duyệt With: {Width}</h2>
             <ul>
                 {posts.map(post => (
                     <li key={post.id}>{post.title || post.name}</li>
                 ))}
             </ul>
+
+            {showgoToTop && (
+                <button
+                    style={{ backgroundColor: '#fff', color: '#333', position: 'fixed', right: 20, bottom: 20 }}
+
+                >
+                    Go to Top
+                </button>
+            )}
 
         </div>
 
