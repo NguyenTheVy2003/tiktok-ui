@@ -1,0 +1,20 @@
+.btn {
+    border: 1px solid #ccc;
+    font-size: 20px;
+    padding: 4px, 16px;
+    user-select: none;
+    border-radius: 6px;
+
+    :hover{
+        cursor: pointer;
+        opacity: 0.9;
+    }
+}
+.disable{
+    pointer-events: none;
+    opacity: 0.5;
+}
+.primary {
+    background-color: #007bff;
+    color: #fff;
+}
