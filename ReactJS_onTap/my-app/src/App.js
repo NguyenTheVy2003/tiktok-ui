@@ -22,14 +22,11 @@ import './App.css'
 // import { useStore, actions, Storage } from './Component/Hooks/UseContex/store'
 // import { useRef, useLayoutEffect } from "react";
 
-
-
 // function App() {
 
 //   const inputRef = useRef();
 //   const [todo, dispatch] = useStore()
 //   const { todos, todoInput, editIndex, editInput } = todo;
-
 
 //   useLayoutEffect(() => {
 //     // khi component được mounted thì focus input
