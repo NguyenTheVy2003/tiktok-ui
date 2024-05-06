@@ -171,10 +171,10 @@ function App() {
   return (
 
     <GlobalStyles>
-      <div style={{ padding: '10px 32px'}} >
+      <div className='d-flex'>
         <Button />
         <Button primary />
-        <Button primary disable/>
+        <Button primary disable />
       </div>
     </GlobalStyles>
 
