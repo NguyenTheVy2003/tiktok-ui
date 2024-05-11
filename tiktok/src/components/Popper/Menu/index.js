@@ -17,6 +17,8 @@ function Menu({ children, items = [], onChange = defaultFn }) {
     const current = history[history.length - 1]
 
     const renderItems = () => {
+
+
         return current.data.map((item, index) => {
 
             const isParent = !!item.children
@@ -35,14 +37,18 @@ function Menu({ children, items = [], onChange = defaultFn }) {
         });
 
     }
+
+    const class_list = cx('menu-list')
+    const class_menu = cx('menu-popper')
     return (
         <Tippy
             interactive
             delay={[0, 800]}
+            offset={[12, 8]}
             placement='bottom-end'
             render={attrs => (
-                <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper className={cx('menu-popper')}>
+                <div className={class_list} tabIndex="-1" {...attrs}>
+                    <PopperWrapper className={class_menu}>
                         {history.length > 1 && <Header title='Language'
                             onBack={() => {
                                 setHistory(prev => prev.slice(0, prev.length - 1))
@@ -51,6 +57,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
                     </PopperWrapper>
                 </div>
             )}
+            onHide={() => setHistory(prev => prev.slice(0, 1))}
         >
             {children}
         </Tippy>

@@ -1,21 +1,38 @@
 import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
+
 import Tippy from '@tippyjs/react/headless';
+import 'tippy.js/dist/tippy.css';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '~/components/Button';
-import { faCircleQuestion, faCircleXmark, faEarthAsia, faEllipsisVertical, faKeyboard, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCircleQuestion,
+    faCircleXmark,
+    faCloudUpload,
+    faEarthAsia,
+    faEllipsisVertical,
+    faGear,
+    faKeyboard,
+    faMagnifyingGlass,
+    faSignOut,
+    faSpinner,
+
+} from '@fortawesome/free-solid-svg-icons';
+
 import styles from './Header.module.scss';
 import AccountItem from '~/components/AccountItem';
 import images from '~/assets/images';
 import Menu from '~/components/Popper/Menu';
+import { faBookmark, faLightbulb, faUser } from '@fortawesome/free-regular-svg-icons';
+import { faBitcoin, faTiktok } from '@fortawesome/free-brands-svg-icons';
 
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
-        title: 'English',
+        title: 'Tiếng Việt',
         children: {
             title: 'Language',
             data: [
@@ -49,6 +66,7 @@ const MENU_ITEMS = [
 ]
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
+    const currentUser = true
 
 
     useEffect(() => {
@@ -73,10 +91,61 @@ function Header() {
 
     }
 
-    return (
-        <header className={cx('wrapper')}>
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: 'Xem hồ sơ',
+            to: '/feetback'
+        },
+        {
+            icon: <FontAwesomeIcon icon={faBookmark} />,
+            title: 'Yêu thích',
+            to: '/feetback'
+        },
+        {
+            icon: <FontAwesomeIcon icon={faBitcoin} />,
+            title: 'Nhận xu',
+            to: '/feetback'
+        },
+        {
+            icon: <FontAwesomeIcon icon={faTiktok} />,
+            title: 'Live studio',
+            to: '/feetback'
+        },
+        {
+            icon: <FontAwesomeIcon icon={faLightbulb} />,
+            title: 'Trung tâm Nhà sáng tạo LIVE',
+            to: '/feetback'
+        },
+        {
+            icon: <FontAwesomeIcon icon={faGear} />,
+            title: 'Cài đặt',
+            to: '/feetback'
+        },
+        ...MENU_ITEMS,
+        {
+            icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+            title: 'Chế độ tối',
+            to: '/feetback'
+        },
 
-            <div className={cx('inner')}>
+        {
+            icon: <FontAwesomeIcon icon={faSignOut} />,
+            title: 'Đăng xuất',
+            to: '/logout',
+            separate: true,
+        },
+    ]
+
+    const wrapper = cx('wrapper')
+    const inner = cx('inner')
+    const search_result = cx('search_result')
+
+
+    return (
+        <header className={wrapper}>
+
+            <div className={inner}>
 
                 <img src={images.logo} alt="Tiktok" />
 
@@ -84,7 +153,7 @@ function Header() {
                     interactive
                     visible={searchResult.length > 0}
                     render={attrs => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <div className={search_result} tabIndex="-1" {...attrs}>
                             <PopperWrapper>
                                 <h4 className={cx('search-title')}>
                                     Accounts
@@ -115,21 +184,38 @@ function Header() {
                 </Tippy>
 
                 <div className={cx('actions')}>
-                    <Button text>Upload</Button>
-                    <Button primary>Đăng nhập</Button>
-                    <Menu
-                        items={MENU_ITEMS}
-                        onChange={handleMenuChange}
-                    >
-                        <button className={cx('more-btn')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
+                    {currentUser ? (
+                        <>
+                            <Tippy delay={[0, 200]} content="Upload video" placement='bottom'>
+                                <button className={cx('action-btn')} >
+                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                </button>
+                            </Tippy>
+                        </>
+                    ) : (
+                        <>
+                            <Button text>Upload</Button>
+                            <Button primary>Đăng nhập</Button>
+                        </>
+                    )}
+                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+
+                        {currentUser ? (
+                            <img
+                                className={cx('user-avatar')}
+                                src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg/800px-Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg'
+                                alt="Nguyen van a" />
+                        ) : (
+                            <button className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        )}
                     </Menu>
                 </div>
 
-            </div>
+            </div >
 
-        </header>
+        </header >
 
     );
 
