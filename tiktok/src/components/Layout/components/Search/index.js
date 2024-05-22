@@ -1,17 +1,17 @@
-import { useEffect, useState, useRef } from 'react';
 import {
     faCircleXmark,
     faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useRef, useState } from 'react';
 
 
 import * as SearchSevices from '~/apiServices/SearchSevices';
 
-import { Wrapper as PopperWrapper } from '~/components/Popper';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadlessTippy from '@tippyjs/react/headless';
 import AccountItem from '~/components/AccountItem';
 import { SearchIcon } from '~/components/Icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { useDebounce } from '~/components/hook';
 
 import classNames from 'classnames/bind';
@@ -63,6 +63,14 @@ function Search() {
         inputRef.current.focus();
     }
 
+    const handleChange = (e) => {
+        const searchValue = e.target.value
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue)
+
+        }
+    }
+
 
     return (
         <HeadlessTippy
@@ -87,7 +95,7 @@ function Search() {
                     value={searchValue}
                     placeholder="Search accounts and videos"
                     spellCheck={false}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleChange}
                     onFocus={() => setShowResult(true)}
                 />
 
@@ -102,7 +110,7 @@ function Search() {
                 {
                     loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
                 }
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={e => e.preventDefault()}>
                     <SearchIcon />
                 </button>
 
