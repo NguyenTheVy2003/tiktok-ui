@@ -45,6 +45,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
             interactive
             delay={[0, 800]}
             offset={[12, 8]}
+
             hideOnClick={hideOnClick}
             placement='bottom-end'
             render={attrs => (
@@ -54,7 +55,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
                             onBack={() => {
                                 setHistory(prev => prev.slice(0, prev.length - 1))
                             }} />}
-                        {renderItems()}
+                        <div className={cx('menu-body')}> {renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}
