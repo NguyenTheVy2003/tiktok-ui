@@ -1,10 +1,10 @@
-
-import classNames from "classnames/bind";
-import style from './AccountItem.module.scss'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import Image from "~/components/Image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classNames from "classnames/bind";
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
+import Image from "~/components/Image";
+import style from './AccountItem.module.scss';
 
 const cx = classNames.bind(style)
 function AccountItem({ data }) {
@@ -25,5 +25,7 @@ function AccountItem({ data }) {
         </ Link >
     );
 }
-
+AccountItem.propTypes = {
+    data: PropTypes.object.isRequired,
+}
 export default AccountItem;
