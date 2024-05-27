@@ -7,10 +7,11 @@
     --white: #fff;
 
     // Default layout
-    --font-family: 'IBM Plex Sans';
+    --font-family: "IBM Plex Sans", TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+
     --default-layout-header-height: 60px;
-    --default-layout-width: 1150px;
-    --default-layout-horizontal-spacer: 24px;
+    --default-layout-width: 100%;
+    --default-layout-horizontal-spacer: 0px;
 }
 * {
     margin: 0;
