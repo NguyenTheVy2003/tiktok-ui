@@ -18,10 +18,6 @@ import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles)
-
-
-
-
 function Search() {
 
     const [searchResult, setSearchResult] = useState([]);
@@ -30,7 +26,7 @@ function Search() {
     const [loading, setLoading] = useState(false);
 
 
-    const debounce = useDebounce(searchValue, 500);
+    const debounceValue = useDebounce(searchValue, 500);
     const inputRef = useRef();
 
     useEffect(() => {
@@ -43,7 +39,7 @@ function Search() {
         const fetchApi = async () => {
             setLoading(true);
 
-            const results = await SearchSevice.search(debounce);
+            const results = await SearchSevice.search(debounceValue);
             setSearchResult(results)
 
             setLoading(false)
@@ -51,7 +47,7 @@ function Search() {
         }
         fetchApi()
 
-    }, [debounce, searchValue]);
+    }, [debounceValue]);
 
     const handleHideResult = () => {
         setShowResult(false)
